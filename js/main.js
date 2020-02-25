@@ -1,22 +1,26 @@
-
-
 let grid = [
             [" ", " ", " "], 
             [" ", " ", " "], 
             [" ", " ", " "]
             ] ;
+let counta = 0;
 
-//pseudo-coding
+//pseudo-coding (Max's way)
 let player = "X";            
 let executeMove = function(x, y) {
-   if (isEmpty (x, y)) { 
+    // if (counta % 2) {
+    //     player = "0";
+    // } else {
+    //     player = "X";
+    // }
+
+    if (isEmpty (x, y)) { 
         fillInGrid ( player, x , y);
-            if (currentPlayerWin ()) {
+        if (currentPlayerWin ()) {
             console.log (player + " has won the game !");
         } else {
             switchPlayer ();
         }
-
    } else {
        // error
    }   
@@ -114,7 +118,7 @@ let winsAcross = function () {
 }
 
 // First version without loops
-let winsAcross = function () {
+let winsDown = function () {
     // Get the element in the first column first row
     let firstColumnFirstRow = grid[0][0];
     // Get the element in the first column second row
@@ -152,7 +156,7 @@ let winsAcross = function () {
     // Get the element in the third column first row
     let thirdColumnFirstRow = grid[0][2];
     // Get the element in the third column second row
-    let thirdolumnSecondRow = grid[1][2];
+    let thirdColumnSecondRow = grid[1][2];
     // Get the element in the third column third row
     let thirdColumnThirdRow = grid[2][2];
 
@@ -179,13 +183,30 @@ let winsDiagonallyLeft = function () {
         firstColumnFirstRow == thirdColumnThirdRow) {
             //You won!
             return true;
-        }         //You lost!
+        }         
+        //You lost!
         return false;
 
 };
 
+let winsDiagonallyRight = function () {
+
+    let thirdColumnFirstRow = grid[0][2];
+    let secondColumnSecondRow = grid[1][1];
+    let firstColumnThirdRow = grid[2][0];
+
+    if (thirdColumnFirstRow == secondColumnSecondRow &&
+        thirdColumnFirstRow == firstColumnThirdRow) {
+            //You won!
+            return true;
+        }
+        //You lost!
+        return false;
+}
+
+//Check if the 
 let isEmpty = function (x, y) {
-    if ( grid[y][x] === " ") { // I DONT GET THIS [Y][X]
+    if ( grid[y][x] === " ") { 
         return true;
     }
 
@@ -193,13 +214,15 @@ let isEmpty = function (x, y) {
 }
 
 let fillInGrid = function (player, x, y) {
-    grid[y][x] = player; // I DONT GET THIS!!!
+    grid[y][x] = player; 
 
     // Tmp print in console 
     printGridInConsole();
 
     // Update dom
 }
+
+// if current player didnt win, then switch player
 
 let switchPlayer = function () {
     if (player === "X") {
@@ -229,29 +252,47 @@ let table = '<table><tr>';
     for (let i = 0 ; i < grid.length; ++i){
         if (i % 3 === 0 && i !== 0) {
         table+= '</tr><tr>'
-        }
-        table+='<td>'+grid[i]+'</td>';
+        }        table+='<td>'+grid[i]+'</td>';
     }
     table+='</tr></table>';
 
     document.write(table);
 
-    // if grid is empty, assign 1st player to player1, and player1 can only use "0"
-
-    // let player1;
-    // for (let i = 0 ; i < grid.length ; ++i) {
-    //     if (grid[i] !== " ") { // if the array contains value
-    //         let player1 = "0";
-    //         break;
-    //     }
-    //     else {
-    //         let player1 = "X"
-    //     }
-    //     console.log("This is an empty array");
-    // }
-
-    // console.log(player1);
 
 let simulator = function(x, y) {
     executeMove(x, y)
 }
+
+
+//click on browser
+$('#0').on('click', function() {
+    // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
+    counta ++;
+    executeMove(0,0)
+});
+$('#1').on('click', function() {
+    // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
+    counta ++;
+    executeMove(1,0)
+});    
+$('#2').on('click', function() {
+    executeMove(2,0)
+});   
+$('#3').on('click', function() {
+    executeMove(0,1)
+});
+$('#4').on('click', function() {
+    executeMove(1,1)
+});    
+$('#5').on('click', function() {
+    executeMove(2,1)
+});   
+$('#6').on('click', function() {
+    executeMove(0,2)
+});
+$('#7').on('click', function() {
+    executeMove(1,2)
+});    
+$('#8').on('click', function() {
+    executeMove(2,2)
+});   
