@@ -7,9 +7,9 @@ let counta = 0;
 
 //pseudo-coding (Max)
 let player = "X";            
-let executeMove = function(x, y) {
+let executeMove = function(x, y, button) {
     if (isEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
-        fillInGrid (player, x , y);
+        fillInGrid (player, x , y, button);
         if (currentPlayerWin ()) {
             return console.log (player + " has won the game !");
         } else {
@@ -211,10 +211,10 @@ let isEmpty = function (x, y) {
 }
 
 // If the square in the grid is empty, then let the player (assigned to X ) to fill in the square
-let fillInGrid = function (player, x, y) {
-    grid[y][x] = player;
-    $( ".flex-item" ).append( "<strong>Hello</strong>" ); 
-
+let fillInGrid = function (player, x, y, button) {
+    grid[y][x] = player; 
+    $(`#${button}`).css('background-color','#ADFF2F');
+    $(`#${button}`).text(`${player}`);
     // Tmp print in console 
     printGridInConsole();
 
@@ -262,36 +262,43 @@ let simulator = function(x, y) {
     executeMove(x, y)
 }
 
+// for (let i) {
+//     create html button
+//     add on click feature to button
+//         - put in any functions you want run upon click
+//     append button to parent div
 
-//click on browser
+//     let $button = $('<div class= id=#${i}')
+//     $(`#${i}`).on(click function () {
+
+//     }
+// }
+
+//add click feature to on browser
 $('#0').on('click', function() {
-    // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
-    // counta ++;
-    executeMove(0,0)
+    executeMove(0,0,0)
 });
 $('#1').on('click', function() {
-    // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
-    // co   unta ++;
-    executeMove(1,0)
+    executeMove(1,0,1)
 });    
 $('#2').on('click', function() {
-    executeMove(2,0)
+    executeMove(2,0,2)
 });   
 $('#3').on('click', function() {
-    executeMove(0,1)
+    executeMove(0,1,3)
 });
 $('#4').on('click', function() {
-    executeMove(1,1)
+    executeMove(1,1,4)
 });    
 $('#5').on('click', function() {
-    executeMove(2,1)
+    executeMove(2,1,5)
 });   
 $('#6').on('click', function() {
-    executeMove(0,2)
+    executeMove(0,2,6)
 });
 $('#7').on('click', function() {
-    executeMove(1,2)
+    executeMove(1,2,7)
 });    
 $('#8').on('click', function() {
-    executeMove(2,2)
+    executeMove(2,2,8)
 });   
