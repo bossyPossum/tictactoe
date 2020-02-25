@@ -5,20 +5,19 @@ let grid = [
             ] ;
 let counta = 0;
 
-//pseudo-coding (Max's way)
+//pseudo-coding (Max)
 let player = "X";            
 let executeMove = function(x, y) {
-    if (isEmpty (x, y)) { 
+    if (isEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
         fillInGrid (player, x , y);
         if (currentPlayerWin ()) {
-            console.log (player + " has won the game !");
+            return console.log (player + " has won the game !");
         } else {
             switchPlayer ();
         }
    } else {
-       // error
-   }   
-
+            return console.log ("This game is finished !");
+   }
 }
 
 let currentPlayerWin = function() {
@@ -33,55 +32,54 @@ let currentPlayerWin = function() {
 let winsAcross = function () {
 
 // check the 1st square in row one contains a specific element
-    let firstRowFirstElement = grid[0][0];
+    let firstRowFirstColumn = grid[0][0];
 // checks the 2nd square in row one contains the same element as the 1st square
-    let firstRowSecondElement = grid[0][1];
+    let firstRowSecondColumn = grid[0][1];
 // checks the 3rd square in row one contains the same element as the 2nd square
-    let firstRowThirdElement = grid[0][2];
+    let firstRowThirdColumn = grid[0][2];
     
     if (
-        firstRowFirstElement == firstRowSecondElement &&
-        firstRowFirstElement == firstRowThirdElement) {
+        firstRowFirstColumn != " " &&
+        firstRowFirstColumn == firstRowSecondColumn &&
+        firstRowFirstColumn == firstRowThirdColumn) {
         // Return because you won!
         return true;
     }
 
     // goes to row 2
     // check the 1st square in row two contains a specific element
-    let secondRowFirstElement = grid[1][0];
+    let secondRowFirstColumn = grid[1][0];
     // checks the 2nd square in row two contains the same element as the 1st square
-    let secondRowSecondElement = grid[1][1];
+    let secondRowSecondColumn = grid[1][1];
     // checks the 3rd square in row two contains the same element as the 2nd square
-    let secondRowThirdElement = grid[1][2];
+    let secondRowThirdColumn = grid[1][2];
     
     if (
-        secondRowFirstElement == secondRowSecondElement &&
-        secondRowFirstElement == secondRowThirdElement) {
+        secondRowFirstColumn != " " &&
+        secondRowFirstColumn == secondRowSecondColumn &&
+        secondRowFirstColumn == secondRowThirdColumn) {
         // Return because you won!
         return true;
     }
 
     // goes to row 3
     // check the 1st square in row three contains a specific element
-    let thirdRowFirstElement = grid[2][0];
+    let thirdRowFirstColumn = grid[2][0];
     // checks the 2nd square in row three contains the same element as the 1st square
-    let thirdRowSecondElement = grid[2][1];
+    let thirdRowSecondColumn = grid[2][1];
     // checks the 3rd square in row three contains the same element as the 2nd square
-    let thirdRowThirdElement = grid[2][2];
+    let thirdRowThirdColumn = grid[2][2];
     
     if (
-        thirdRowFirstElement == thirdRowSecondElement &&
-        thirdRowFirstElement == thirdRowThirdElement) {
+        thirdRowFirstColumn != " " &&
+        thirdRowFirstColumn == thirdRowSecondColumn &&
+        thirdRowFirstColumn == thirdRowThirdColumn) {
         // Return because you won!
         return true;
     }
 
     // We lost
     return false;
-
-
-  
-
 
     // We are looping through the rows
     // for (let i = 0; i < grid.length; ++i) {
@@ -122,8 +120,9 @@ let winsDown = function () {
 
     // Check if I won
     if (
+        firstColumnFirstRow != " " &&
         firstColumnFirstRow == firstColumnSecondRow &&
-        firstColumnSecondRow == firstColumnThirdRow
+        firstColumnFirstRow == firstColumnThirdRow
     ) {
         // You won!
         return true;
@@ -139,6 +138,7 @@ let winsDown = function () {
 
     // Check if I won
     if (
+        secondColumnFirstRow !== " " &&
         secondColumnFirstRow == secondColumnSecondRow &&
         secondColumnFirstRow == secondColumnThirdRow
     ) {
@@ -156,6 +156,7 @@ let winsDown = function () {
 
     // Check if I won
     if (
+        thirdColumnFirstRow != " " && 
         thirdColumnFirstRow == thirdColumnSecondRow &&
         thirdColumnFirstRow == thirdColumnThirdRow
     ) {
@@ -173,7 +174,8 @@ let winsDiagonallyLeft = function () {
     let secondColumnSecondRow = grid[1][1];
     let thirdColumnThirdRow = grid[2][2];
     
-    if (firstColumnFirstRow == secondColumnSecondRow &&
+    if (firstColumnFirstRow !== " " &&
+        firstColumnFirstRow == secondColumnSecondRow &&
         firstColumnFirstRow == thirdColumnThirdRow) {
             //You won!
             return true;
@@ -189,7 +191,8 @@ let winsDiagonallyRight = function () {
     let secondColumnSecondRow = grid[1][1];
     let firstColumnThirdRow = grid[2][0];
 
-    if (thirdColumnFirstRow == secondColumnSecondRow &&
+    if (thirdColumnFirstRow != " " &&
+        thirdColumnFirstRow == secondColumnSecondRow &&
         thirdColumnFirstRow == firstColumnThirdRow) {
             //You won!
             return true;
@@ -198,17 +201,19 @@ let winsDiagonallyRight = function () {
         return false;
 }
 
-//Check if the 
+//Check if the "selected" square is empty
 let isEmpty = function (x, y) {
-    if ( grid[y][x] === " ") { 
+    if ( grid[y][x] === " " ) { 
         return true;
     }
 
     return false;
 }
 
+// If the square in the grid is empty, then let the player (assigned to X ) to fill in the square
 let fillInGrid = function (player, x, y) {
-    grid[y][x] = player; 
+    grid[y][x] = player;
+    $( ".flex-item" ).append( "<strong>Hello</strong>" ); 
 
     // Tmp print in console 
     printGridInConsole();
