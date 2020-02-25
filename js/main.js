@@ -8,14 +8,8 @@ let counta = 0;
 //pseudo-coding (Max's way)
 let player = "X";            
 let executeMove = function(x, y) {
-    // if (counta % 2) {
-    //     player = "0";
-    // } else {
-    //     player = "X";
-    // }
-
     if (isEmpty (x, y)) { 
-        fillInGrid ( player, x , y);
+        fillInGrid (player, x , y);
         if (currentPlayerWin ()) {
             console.log (player + " has won the game !");
         } else {
@@ -29,7 +23,7 @@ let executeMove = function(x, y) {
 
 let currentPlayerWin = function() {
     if (winsAcross() || winsDown() || winsDiagonallyLeft() || winsDiagonallyRight()) {
-        true;
+        return true;
     }
   
     return false;
@@ -267,12 +261,12 @@ let simulator = function(x, y) {
 //click on browser
 $('#0').on('click', function() {
     // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
-    counta ++;
+    // counta ++;
     executeMove(0,0)
 });
 $('#1').on('click', function() {
     // if # of clicks = even numbers (ie 2nd, 4th, 6th and 8th)
-    counta ++;
+    // co   unta ++;
     executeMove(1,0)
 });    
 $('#2').on('click', function() {
