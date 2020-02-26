@@ -11,13 +11,18 @@ let executeMove = function(x, y, button) {
     if (isEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
         fillInGrid (player, x , y, button);
         if (currentPlayerWin ()) {
-            return console.log (player + " has won the game !");
+            $(".message").text(" You have won the game !")
+            return;
         } else {
             switchPlayer ();
-        }
-   } else {
-            return console.log ("This game is finished !");
-   }
+        }    
+    // } else if (!isEmpty (x, y) && !currentPlayerWin()) {
+    //         $("p").text(" This is a draw !")
+    //         return;
+    } else {
+        $(".message").text(" This game is finished !")
+        return;
+    }
 }
 
 let currentPlayerWin = function() {

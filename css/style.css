@@ -61,8 +61,22 @@
     border: 3px solid black;
     background-color: yellow;
   }
+
+  .header {
+    position: fixed;
+    left: 0;
+    /* bottom: 0; */
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: turquoise;
+    font-weight: bolder;
+    opacity: 1;
+
+    
+  }
  
-.header {
+/* .header {
     height: 100px;
     text-align: center;
     padding: 10px;
@@ -75,12 +89,12 @@
     #fff;
     background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-}
+} */
 
-.header :hover {
+/* .header :hover {
   background-color: turquoise;
   color: black;
-}
+} */
 
 h1 {
     text-shadow: darkred;
@@ -103,5 +117,12 @@ body {
   background: url('../hudson-roseboom-TlAMS5k_lzs-unsplash.jpg');
   /* background-repeat: no-repeat; */
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.9;
+}
+
+.message {
+  font-size: 30px;
+  opacity: 1;
+  font-weight: bolder;
+  color: crimson;
 }
