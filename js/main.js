@@ -218,7 +218,7 @@ let isEmpty = function (x, y) {
 // If the square in the grid is empty, then let the player (assigned to X ) to fill in the square
 let fillInGrid = function (player, x, y, button) {
     grid[y][x] = player; 
-    $(`#${button}`).css('background-color','turquoise');
+    $(`#${button}`).css('background-color','slategray');
     $(`#${button}`).text(`${player}`);
     // Tmp print in console 
     printGridInConsole();
