@@ -10,6 +10,13 @@
     Border colors used to display items better.
 
 */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 
 .flex-container {
     /* 
@@ -17,12 +24,19 @@
   
     This causes all DIRECT children to become flex items.  */
     display: flex;
+    /* flex-direction: column;
+    align-items: flex-end; */
+    justify-content: center;
   
     /* Wrap forces items onto multiple lines. Remember default flex-direction is row so 
     it's ommited. */
     flex-wrap: wrap;
     /* Items are distributed/spaced evenly along the axis.*/
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    width: 450px;
+    /* position: absolute; */
+   
+    
   }
   
   .flex-item {
@@ -35,33 +49,17 @@
     */
     flex: 0 0 32%;
     margin-bottom: 2%;
+    
   
     /* Height of each element for this example. Should be adjusted accordingly.*/
-    height: 160px;
+    height: 100px;
   }
   
-  /*===================================================================
-  Non flexbox related styling. Only for better visibilty. 
-  =====================================================================*/
-  
-  .border-purple {
-    border: 1px solid purple;
-  }
-  
-  .border-pink {
-    border: 1px solid palevioletred;
-  }
-  
-  .border-orange {
-    border: 1px solid orangered;
-  }
-  
-  .border-green {
-    border: 1px solid green;
-  }
+
   
   .border-blue {
-    border: 1px solid aqua;
+    border: 3px solid black;
+    background-color: yellow;
   }
  
 .header {
@@ -79,7 +77,31 @@
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
 }
 
+.header :hover {
+  background-color: turquoise;
+  color: black;
+}
+
 h1 {
     text-shadow: darkred;
     text-transform: uppercase;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: turquoise;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+body {
+  background: url('../hudson-roseboom-TlAMS5k_lzs-unsplash.jpg');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  opacity: 0.5;
 }
