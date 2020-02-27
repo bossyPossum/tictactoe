@@ -88,10 +88,10 @@
     
   }
 
-/* .header :hover {
-  background-color: turquoise;
+aside :hover {
+  background-color: rgb(204, 230, 57);
   color: black;
-} */
+}
 
 h1 {
     text-transform: uppercase;
@@ -171,9 +171,9 @@ aside {
 }
 
 button {
-  position: relative;
-  width: 120px;
-  margin: 20px auto;
+  position: static;
+  width: 100px;
+  margin: 15px auto;
 
 }
 
