@@ -7,21 +7,39 @@ let player = "X";
 
 //Overall function
 let executeMove = function(x, y, button) {
-    if (gridIsEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
+    if (boardHasSpace() && cellIsEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
         fillInGrid (player, x , y, button);
         if (currentPlayerWin ()) {
             $(".message").text(" You are the winner !!")
             return;
-            } else 
+        } 
+        else if (!boardHasSpace()) {
+            $(".message").text(" This is a draw !!");
+        }
+        else { 
             switchPlayer (); 
-    } 
+        }
+    } else if (!boardHasSpace()) { 
+        $(".message").text(" This is a draw !!");
     }
-
+}
 
 //Check if the "selected" square is empty
-let gridIsEmpty = function (x, y) {
+let cellIsEmpty = function (x, y) {
     if ( grid[y][x] === " " ) { 
         return true;
+    }
+    return false;
+}
+
+let boardHasSpace = function () {
+
+    for (var i = 0; i < grid.length; i++) {
+        for (var j = 0; j < grid[i].length; j++) {
+            if (grid[i][j] == " ") {
+                return true;
+            }
+        }
     }
     return false;
 }
@@ -209,9 +227,9 @@ let winsDiagonallyRight = function () {
         }
 }
 
-let simulator = function(x, y) {
-    executeMove(x, y, button)
-}
+// let simulator = function(x, y) {
+//     executeMove(x, y, button)
+// }
 
 //add click feature to each square when click on browser
 $('#0').on('click', function() {
