@@ -3,7 +3,6 @@ let grid = [
             [" ", " ", " "], 
             [" ", " ", " "]
             ] ;
-let counta = 0;
 
 //pseudo-coding (Max)
 let player = "X";            
@@ -24,7 +23,36 @@ let executeMove = function(x, y, button) {
         return;
     }
 }
+// function for a reset button
 
+let resetbutton = function () {
+    grid[y][x] === " "; 
+}
+
+$("button").on("click", function () {
+    grid = [
+        [" ", " ", " "], 
+        [" ", " ", " "], 
+        [" ", " ", " "]
+        ] ;
+    $('#0').css('background-color','rgb(204, 230, 57)').text("");
+    $('#1').css('background-color','rgb(204, 230, 57)').text("");  
+    $('#2').css('background-color','rgb(204, 230, 57)').text("");
+    $('#3').css('background-color','rgb(204, 230, 57)').text("");  
+    $('#4').css('background-color','rgb(204, 230, 57)').text("");
+    $('#5').css('background-color','rgb(204, 230, 57)').text("");  
+    $('#6').css('background-color','rgb(204, 230, 57)').text("");
+    $('#7').css('background-color','rgb(204, 230, 57)').text("");  
+    $('#8').css('background-color','rgb(204, 230, 57)').text(""); 
+});
+
+// let fillInGrid = function (player, x, y, button) {
+//     grid[y][x] = player; 
+//     $(`#${button}`).css('background-color','slategray');
+//     $(`#${button}`).text(`${player}`);
+
+
+// Different winning cases
 let currentPlayerWin = function() {
     if (winsAcross() || winsDown() || winsDiagonallyLeft() || winsDiagonallyRight()) {
         return true;
@@ -221,7 +249,7 @@ let fillInGrid = function (player, x, y, button) {
     $(`#${button}`).css('background-color','slategray');
     $(`#${button}`).text(`${player}`);
     // Tmp print in console 
-    printGridInConsole();
+    // printGridInConsole();
 
     // Update dom
 }
@@ -236,31 +264,21 @@ let switchPlayer = function () {
     }
 }
 
-let printGridInConsole = function() {
-    for (let i = 0; i < grid.length; ++i) {
-        let line = '';
+// let printGridInConsole = function() {
+//     for (let i = 0; i < grid.length; ++i) {
+//         let line = '';
 
-        for (let j = 0; j < grid[i].length; ++j) {
-            let val = grid[i][j];
-            if (val == " ") {
-                val = '.';
-            }
-            line += val + ' ';
-        }
-        console.log(line);
-    }
-    console.log('');
-}
-
-// let table = '<table><tr>';
-//     for (let i = 0 ; i < grid.length; ++i){
-//         if (i % 3 === 0 && i !== 0) {
-//         table+= '</tr><tr>'
-//         }        table+='<td>'+grid[i]+'</td>';
+//         for (let j = 0; j < grid[i].length; ++j) {
+//             let val = grid[i][j];
+//             if (val == " ") {
+//                 val = '.';
+//             }
+//             line += val + ' ';
+//         }
+//         console.log(line);
 //     }
-//     table+='</tr></table>';
-
-//     document.write(table);
+//     console.log('');
+// }
 
 
 let simulator = function(x, y) {
