@@ -34,7 +34,7 @@ $("button").on("click", function () {
         [" ", " ", " "], 
         [" ", " ", " "], 
         [" ", " ", " "]
-        ] ;
+        ] ;    
     $('#0').css('background-color','rgb(204, 230, 57)').text("");
     $('#1').css('background-color','rgb(204, 230, 57)').text("");  
     $('#2').css('background-color','rgb(204, 230, 57)').text("");
@@ -44,6 +44,7 @@ $("button").on("click", function () {
     $('#6').css('background-color','rgb(204, 230, 57)').text("");
     $('#7').css('background-color','rgb(204, 230, 57)').text("");  
     $('#8').css('background-color','rgb(204, 230, 57)').text(""); 
+    $(".message").text("");
 });
 
 // let fillInGrid = function (player, x, y, button) {

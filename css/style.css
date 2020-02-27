@@ -170,3 +170,68 @@ aside {
   font-family: 'IM Fell Double Pica SC', sans-serif;
 }
 
+button {
+  position: relative;
+  width: 120px;
+  margin: 20px auto;
+
+}
+
+#traveler {
+  position: absolute;
+  width: 20px;
+  height: 240px;
+
+  animation-name: travel;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 4.8s;
+}
+
+#bouncer {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: rgb(204, 230, 57);
+  border: groove slategray;
+  border-radius: 40px;
+
+  animation-name: bounce;
+  animation-iteration-count: infinite;
+  animation-duration: 4.2s;
+}
+
+
+
+@keyframes travel {
+  from { left: 0;     }
+  to   { left: 640px; }
+}
+
+@keyframes bounce {
+  from, to  {
+    bottom: 0;
+    animation-timing-function: ease-out;
+  }
+  50% {
+    bottom: 220px;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes spin {
+  from {
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
