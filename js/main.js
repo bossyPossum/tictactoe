@@ -13,12 +13,12 @@ let executeMove = function(x, y, button) {
         if (currentPlayerWin ()) {
             $(".message").text(" You have won the game !")
             return;
-        } else {
-            switchPlayer ();
-        }    
-    // } else if (!isEmpty (x, y) && !currentPlayerWin()) {
-    //         $("p").text(" This is a draw !")
-    //         return;
+        } else if (!currentPlayerWin()) {
+            switchPlayer ();   
+            } else {
+                $("p").text(" This is a draw !")
+            }
+            return;
     } else {
         $(".message").text(" This game is finished !")
         return;
@@ -252,15 +252,15 @@ let printGridInConsole = function() {
     console.log('');
 }
 
-let table = '<table><tr>';
-    for (let i = 0 ; i < grid.length; ++i){
-        if (i % 3 === 0 && i !== 0) {
-        table+= '</tr><tr>'
-        }        table+='<td>'+grid[i]+'</td>';
-    }
-    table+='</tr></table>';
+// let table = '<table><tr>';
+//     for (let i = 0 ; i < grid.length; ++i){
+//         if (i % 3 === 0 && i !== 0) {
+//         table+= '</tr><tr>'
+//         }        table+='<td>'+grid[i]+'</td>';
+//     }
+//     table+='</tr></table>';
 
-    document.write(table);
+//     document.write(table);
 
 
 let simulator = function(x, y) {
