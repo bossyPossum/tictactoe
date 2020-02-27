@@ -3,36 +3,54 @@ let grid = [
             [" ", " ", " "], 
             [" ", " ", " "]
             ] ;
+let player = "X";    
 
-//pseudo-coding (Max)
-let player = "X";            
+//Overall function
 let executeMove = function(x, y, button) {
-    if (griDIsEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
+    if (gridIsEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
         fillInGrid (player, x , y, button);
         if (currentPlayerWin ()) {
-            $(".message").text(" You WON !!")
+            $(".message").text(" You are the winner !!")
             return;
-            } else if (!currentPlayerWin()) {
-                switchPlayer ();   
-                return;
+            } else 
+            switchPlayer (); 
+    } 
+    }
+
+
+//Check if the "selected" square is empty
+let gridIsEmpty = function (x, y) {
+    if ( grid[y][x] === " " ) { 
+        return true;
+    }
+    return false;
+}
+
+// If the square in the grid is empty, then let the player (assigned to X ) to fill in the square
+let fillInGrid = function (player, x, y, button) {
+    grid[y][x] = player; 
+    $(`#${button}`).css('background-color','slategray');
+    $(`#${button}`).text(`${player}`);
+    // printGridInConsole() for testing;
+}
+
+// if current player didnt win, then switch player
+let switchPlayer = function () {
+    if (player === "X") {
+        player = "O";
     } else {
-        // $(".message").text(" This game is finished !")
-        return;
+        player = "X";
     }
 }
-}
+
 // function for a reset button
-
-let resetbutton = function () {
-    grid[y][x] === " "; 
-}
-
 $("button").on("click", function () {
     grid = [
         [" ", " ", " "], 
         [" ", " ", " "], 
         [" ", " ", " "]
         ] ;    
+
     $('#0').css('background-color','rgb(204, 230, 57)').text("");
     $('#1').css('background-color','rgb(204, 230, 57)').text("");  
     $('#2').css('background-color','rgb(204, 230, 57)').text("");
@@ -44,7 +62,6 @@ $("button").on("click", function () {
     $('#8').css('background-color','rgb(204, 230, 57)').text(""); 
     $(".message").text("");
 });
-
 
 // Different winning cases
 let currentPlayerWin = function() {
@@ -58,11 +75,11 @@ let currentPlayerWin = function() {
 // First version without loops
 let winsAcross = function () {
 
-// check the 1st square in row one contains a specific element
+    // check the 1st square in row one contains a specific element
     let firstRowFirstColumn = grid[0][0];
-// checks the 2nd square in row one contains the same element as the 1st square
+    // checks the 2nd square in row one contains the same element as the 1st square
     let firstRowSecondColumn = grid[0][1];
-// checks the 3rd square in row one contains the same element as the 2nd square
+    // checks the 3rd square in row one contains the same element as the 2nd square
     let firstRowThirdColumn = grid[0][2];
     
     if (
@@ -104,36 +121,6 @@ let winsAcross = function () {
         // Return because you won!
         return true;
     }
-
-    // We lost
-    return false;
-
-    // We are looping through the rows
-    // for (let i = 0; i < grid.length; ++i) {
-    //     // let initialValue = grid[i][0];
-
-    //     // // if ()
-
-
-    //     // //
-
-    //     // //VIV failed - EPIC FAIL
-    //     // //the initial value can be anything of 3 things
-    //     // //checking if the current player is winner (n the current game state)
-    //     // //so what is a logical thing to check here
-
-    //     // let result = true;
-    //     // for (let j = 0; j < grid[i].length; ++j) {
-    //     //     if (initialValue != grid[i][j] ) {
-    //     //     result = false;
-    //     //     }
-    //     // }  
-    //     // if (result) {
-    //     //     return true;
-    //     // }
-    // }
-    //
-    // return false;
 }
 
 // First version without loops
@@ -145,13 +132,13 @@ let winsDown = function () {
     // Get the element in the first column third row
     let firstColumnThirdRow = grid[2][0];
 
-    // Check if I won
+    // Check if player has won
     if (
         firstColumnFirstRow != " " &&
         firstColumnFirstRow == firstColumnSecondRow &&
         firstColumnFirstRow == firstColumnThirdRow
     ) {
-        // You won!
+        // Return because you won!
         return true;
     }
 
@@ -163,13 +150,13 @@ let winsDown = function () {
     // Get the element in the second column third row
     let secondColumnThirdRow = grid[2][1];
 
-    // Check if I won
+    // Check if player has won
     if (
         secondColumnFirstRow !== " " &&
         secondColumnFirstRow == secondColumnSecondRow &&
         secondColumnFirstRow == secondColumnThirdRow
     ) {
-        // You won!
+        // Return because you won!
         return true;
     }
 
@@ -181,18 +168,15 @@ let winsDown = function () {
     // Get the element in the third column third row
     let thirdColumnThirdRow = grid[2][2];
 
-    // Check if I won
+    // Check if player has won
     if (
         thirdColumnFirstRow != " " && 
         thirdColumnFirstRow == thirdColumnSecondRow &&
         thirdColumnFirstRow == thirdColumnThirdRow
     ) {
-        // You won!
+        // Return because you won!
         return true;
     }
-
-    // You lost!
-    return false;
 };
 
 let winsDiagonallyLeft = function () {
@@ -203,13 +187,11 @@ let winsDiagonallyLeft = function () {
     
     if (firstColumnFirstRow !== " " &&
         firstColumnFirstRow == secondColumnSecondRow &&
-        firstColumnFirstRow == thirdColumnThirdRow) {
-            //You won!
+        firstColumnFirstRow == thirdColumnThirdRow
+        ) {
+            // Return because you won!
             return true;
         }         
-        //You lost!
-        return false;
-
 };
 
 let winsDiagonallyRight = function () {
@@ -220,78 +202,18 @@ let winsDiagonallyRight = function () {
 
     if (thirdColumnFirstRow != " " &&
         thirdColumnFirstRow == secondColumnSecondRow &&
-        thirdColumnFirstRow == firstColumnThirdRow) {
-            //You won!
+        thirdColumnFirstRow == firstColumnThirdRow
+        ) {
+            // Return because you won!
             return true;
         }
-        //You lost!
-        return false;
 }
-
-//Check if the "selected" square is empty
-let griDIsEmpty = function (x, y) {
-    if ( grid[y][x] === " " ) { 
-        return true;
-    }
-
-    return false;
-}
-
-// If the square in the grid is empty, then let the player (assigned to X ) to fill in the square
-let fillInGrid = function (player, x, y, button) {
-    grid[y][x] = player; 
-    $(`#${button}`).css('background-color','slategray');
-    $(`#${button}`).text(`${player}`);
-    // Tmp print in console 
-    // printGridInConsole();
-
-    // Update dom
-}
-
-// if current player didnt win, then switch player
-
-let switchPlayer = function () {
-    if (player === "X") {
-        player = "0";
-    } else {
-        player = "X";
-    }
-}
-
-// let printGridInConsole = function() {
-//     for (let i = 0; i < grid.length; ++i) {
-//         let line = '';
-
-//         for (let j = 0; j < grid[i].length; ++j) {
-//             let val = grid[i][j];
-//             if (val == " ") {
-//                 val = '.';
-//             }
-//             line += val + ' ';
-//         }
-//         console.log(line);
-//     }
-//     console.log('');
-// }
-
 
 let simulator = function(x, y) {
-    executeMove(x, y)
+    executeMove(x, y, button)
 }
 
-// for (let i) {
-//     create html button
-//     add on click feature to button
-//         - put in any functions you want run upon click
-//     append button to parent div
-
-//     let $button = $('<div class= id=#${i}')
-//     $(`#${i}`).on(click function () {
-
-//     }
-// }
-
-//add click feature to on browser
+//add click feature to each square when click on browser
 $('#0').on('click', function() {
     executeMove(0,0,0)
 });
@@ -319,3 +241,56 @@ $('#7').on('click', function() {
 $('#8').on('click', function() {
     executeMove(2,2,8)
 });   
+
+// let printGridInConsole = function() {
+//     for (let i = 0; i < grid.length; ++i) {
+//         let line = '';
+
+//         for (let j = 0; j < grid[i].length; ++j) {
+//             let val = grid[i][j];
+//             if (val == " ") {
+//                 val = '.';
+//             }
+//             line += val + ' ';
+//         }
+//         console.log(line);
+//     }
+//     console.log('');
+// }
+
+// for (let i) {
+//     create html button, add on click feature to button
+//     put in any functions you want run upon click
+//     then append button to parent
+
+//     let $button = $('<div class= id=#${i}')
+//     $(`#${i}`).on(click function () {
+//     }
+// }
+
+// We are looping through the rows
+    // for (let i = 0; i < grid.length; ++i) {
+    //     // let initialValue = grid[i][0];
+
+    //     // // if ()
+
+
+    //     // //
+
+    //     // //VIV failed - EPIC FAIL
+    //     // //the initial value can be anything of 3 things
+    //     // //checking if the current player is winner (n the current game state)
+    //     // //so what is a logical thing to check here
+
+    //     // let result = true;
+    //     // for (let j = 0; j < grid[i].length; ++j) {
+    //     //     if (initialValue != grid[i][j] ) {
+    //     //     result = false;
+    //     //     }
+    //     // }  
+    //     // if (result) {
+    //     //     return true;
+    //     // }
+    // }
+    //
+    // return false;
