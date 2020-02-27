@@ -78,19 +78,22 @@
     opacity: 1;  
 
     background:
-    radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent),
-    radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
+    radial-gradient(circle, transparent 5%, slategray 20%, slategray 80%, transparent 80%, transparent),
+    radial-gradient(circle, transparent 10%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
     linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px,
     linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
     background-color: slategray;
     background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
-
-    
   }
 
 aside :hover {
-  background-color: rgb(204, 230, 57);
+  font-size: 150%;
   color: black;
+}
+
+p :hover {
+  font-size: 150%;
+  /* color: black; */
 }
 
 h1 {
@@ -134,8 +137,8 @@ h1 {
   opacity: 1;
 
   background:
-  radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent),
-  radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
+  radial-gradient(circle, transparent 10%, slategray 20%, slategray 80%, transparent 80%, transparent),
+  radial-gradient(circle, transparent 10%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
   linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px,
   linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
   background-color: slategray;
@@ -150,7 +153,6 @@ body {
   opacity: 0.9;
   min-height: 95vh;
   padding: 0;
-  /* margin: 0; */
 }
 
 .message {
@@ -177,61 +179,45 @@ button {
 
 }
 
-#traveler {
-  position: absolute;
-  width: 20px;
-  height: 240px;
-
-  animation-name: travel;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-duration: 4.8s;
+.tennis-ball
+{
+    width: 35px;
+    position: absolute;
+    animation: tennis 5s linear infinite alternate;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
-
-#bouncer {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: rgb(204, 230, 57);
-  border: groove slategray;
-  border-radius: 40px;
-
-  animation-name: bounce;
-  animation-iteration-count: infinite;
-  animation-duration: 4.2s;
+@keyframes tennis
+{
+    0%
+    {
+        top:0vh;
+        left: 2px;
+        transform: rotate(0deg);
+    }    
+    25%
+    {
+        top: 90vh;
+        left: 300px;
+        transform: rotate(360deg);
+    }    
+    50%
+    {
+        top: 0vh;
+        left: 600px;
+        transform: rotate(0deg);
+    }    
+    75%
+    {
+        top: 90vh;
+        left: 900px;
+        transform: rotate(360deg);
+    }    
+    100%
+    {
+        top: 0vh;
+        left: 1200px;
+        transform: rotate(0deg);
+    }
 }
-
-
-
-@keyframes travel {
-  from { left: 0;     }
-  to   { left: 640px; }
-}
-
-@keyframes bounce {
-  from, to  {
-    bottom: 0;
-    animation-timing-function: ease-out;
-  }
-  50% {
-    bottom: 220px;
-    animation-timing-function: ease-in;
-  }
-}
-
-@keyframes spin {
-  from {
-    -moz-transform: rotate(0);
-    -o-transform: rotate(0);
-    -ms-transform: rotate(0);
-    transform: rotate(0);
-  }
-  to {
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-

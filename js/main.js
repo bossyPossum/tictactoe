@@ -7,21 +7,19 @@ let grid = [
 //pseudo-coding (Max)
 let player = "X";            
 let executeMove = function(x, y, button) {
-    if (isEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
+    if (griDIsEmpty (x, y) && !currentPlayerWin()) { // both condition needs to be true, otherwise the game will continue even after a winning game.
         fillInGrid (player, x , y, button);
         if (currentPlayerWin ()) {
-            $(".message").text(" You have won the game !!")
+            $(".message").text(" You WON !!")
             return;
-        } else if (!currentPlayerWin()) {
-            switchPlayer ();   
-                } else {
-                    $("p").text(" This is a draw !");
-                }
+            } else if (!currentPlayerWin()) {
+                switchPlayer ();   
                 return;
     } else {
         // $(".message").text(" This game is finished !")
         return;
     }
+}
 }
 // function for a reset button
 
@@ -231,7 +229,7 @@ let winsDiagonallyRight = function () {
 }
 
 //Check if the "selected" square is empty
-let isEmpty = function (x, y) {
+let griDIsEmpty = function (x, y) {
     if ( grid[y][x] === " " ) { 
         return true;
     }
